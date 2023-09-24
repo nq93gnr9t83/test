@@ -1,10 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>My Cloudflare Site</title>
+  <meta charset="UTF-8">
+  <title>Simple GitHub Pages Site</title>
 </head>
 <body>
-    <h1>Hello World!</h1>
+  <div id="app"></div>
+
+  <script>
+    // Define your routes
+    const routes = {
+      "/foo/123/bar/456": "fooBarPage",
+      "/": "homePage"
+    };
+
+    // Get current path
+    const path = window.location.pathname;
+
+    // Get the element to inject content
+    const appElement = document.getElementById("app");
+
+    // Render content based on route
+    if (routes.hasOwnProperty(path)) {
+      switch(routes[path]) {
+        case "fooBarPage":
+          appElement.innerHTML = "<h1>Foo Bar Page</h1>";
+          break;
+        case "homePage":
+          appElement.innerHTML = "<h1>Home Page</h1>";
+          break;
+        default:
+          appElement.innerHTML = "<h1>404 Page Not Found</h1>";
+      }
+    } else {
+      // Redirect to home page if the route is not defined
+      window.location.href = "/";
+    }
+  </script>
 </body>
 </html>
